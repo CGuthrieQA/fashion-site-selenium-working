@@ -70,9 +70,21 @@ public class FashionStepDefs {
 		//
 		// For other transformations you can register a DataTableType.
 
-		String email, firstname, lastname, password, gender, address, city, state, postcode, mobile, country, alias;
+		String 
+			// email,
+			firstname,
+			lastname,
+			password,
+			gender,
+			address,
+			city,
+			state,
+			postcode,
+			mobile,
+			// country,
+			alias;
 		
-		email = dataTable.get("email");
+		// email = dataTable.get("email");
 		firstname = dataTable.get("firstname");
 		lastname = dataTable.get("lastname");
 		password = dataTable.get("password");
@@ -81,7 +93,7 @@ public class FashionStepDefs {
 		city = dataTable.get("city");
 		state = dataTable.get("state");
 		postcode = dataTable.get("postcode");
-		country = dataTable.get("country");
+		// country = dataTable.get("country");
 		mobile = dataTable.get("mobile");
 		alias = dataTable.get("alias");
 		
