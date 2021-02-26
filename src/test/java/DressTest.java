@@ -1,4 +1,6 @@
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,21 +39,20 @@ public class DressTest {
     	
     	waitUntilLoaded(driver);
     	
-    	System.out.println("entering email foo@bar.com in the email box");
-    	driver.findElementByXPath("//*[@id=\'email_create\']").sendKeys("fooo1@baar1.com");
+    	System.out.println("entering email 1111foo@1111bar.com in the email box");
+    	driver.findElementByXPath("//*[@id=\'email_create\']").sendKeys("21111foo@21111bar.com");
 
     	System.out.println("clicking the submit button");
     	driver.findElement(By.id("SubmitCreate")).click();
 
-    	waitUntilLoaded(driver);
+    	waitUntilForm(driver);
     	
-    	try {
-    		System.out.println("\nWaiting for 10 seconds\n");
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	try {
+//			Thread.sleep(6000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     	
 //    	WebDriverWait stateClickableWait = new WebDriverWait(driver, 10);
 //    	stateClickableWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\'id_state\']")));
@@ -90,14 +91,6 @@ public class DressTest {
     	driver.findElementByXPath("//*[@id=\"alias\"]").clear();
     	driver.findElementByXPath("//*[@id=\"alias\"]").sendKeys("lorem@ipsum.com");
     	
-    	try {
-    		System.out.println("\nWaiting for 2 seconds\n");
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
     	//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     	
     	System.out.println("submit the register button");
@@ -106,19 +99,15 @@ public class DressTest {
     	
 
     	waitUntilLoaded(driver);
+    	
+    	System.out.println("My account");
+    	String expected = "/html/body/div/div[2]/div/div[3]/div/h1";
+    	String result = driver.findElementByXPath("/html/body/div/div[2]/div/div[3]/div/h1").getText();
+    	assertEquals(expected, result);
 //    	
 //    	System.out.println("on the new page hit the login button");
 //    	//driver.findElementByXPath("//*[@id=\"SubmitLogin\"]").click();
 //    	driver.findElementByXPath("//*[@id=\"SubmitLogin\"]").submit();
-    	
-    	try {
-    		System.out.println("\nWaiting for 30 seconds\n");
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
     	
     }
 
@@ -157,11 +146,16 @@ public class DressTest {
 	     cOptions.setExperimentalOption("prefs", prefs);
 	
 	     return cOptions;
-     }
+	}
 	
 	public void waitUntilLoaded(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, 2);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
 	}
-    
+	
+	public void waitUntilForm(WebDriver driver) {
+		WebDriverWait wait2 = new WebDriverWait(driver, 10);
+		wait2.until(ExpectedConditions.presenceOfElementLocated(By.id("id_gender1")));
+	}
+	
 }
